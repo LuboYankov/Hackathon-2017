@@ -3,7 +3,7 @@
 	<p>WHOADUDETEXT</p>
 	<form accept-charset="UTF-8" method="post" enctype="multipart/form-data">
 		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">		
-			<p> Select file: <%= file_field_tag 'upload[file]', class: 'form-control', :required => true %> </p>
+			<p> Select file: <%= file_field_tag 'upload[file]', class: 'form-control', :required => true, accept: 'video/mp4' %> </p>
 			<%= submit_tag "Get subtitles", class: 'btn btn-default' %>
 	</form>
 	
