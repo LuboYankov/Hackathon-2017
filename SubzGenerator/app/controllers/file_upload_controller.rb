@@ -1,3 +1,6 @@
+require_relative "./video_services/convert_video.rb"
+require_relative "./video_services/audio_to_text.rb"
+
 class FileUploadController < ApplicationController
 	before_action :authenticate_user!
 	def index
@@ -14,9 +17,9 @@ class FileUploadController < ApplicationController
 		  `mkdir "#{directory}"`
 		end
 		File.open(path, "wb") { |f| f.write(params[:upload][:file].read) }
-		#lang = transform_lang(params[:upload][:lang])
-		#srt_file = let_the_magic_begin(path, lang.to_s)
-		#system("rm #{path}")
-		#redirect_to :controller => :download, :action => 'srt', :filename_param => srt_file.to_s
+		filename = to_flac(path)
+		json_data_to_srt(filename, get_json_data("public/converted_data/#{filename}.flac"))
+		File.delete("public/converted_data/#{filename}.flac") if File.exist?("public/converted_data/#{filename}.flac")
+		File.delete("public/data/#{filename}.mp4") if File.exist?("public/data/#{filename}.mp4")
 	end
 end
