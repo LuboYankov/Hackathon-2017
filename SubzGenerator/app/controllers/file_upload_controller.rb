@@ -1,11 +1,11 @@
 class FileUploadController < ApplicationController
-	
-	def index	
+	before_action :authenticate_user!
+	def index
 	end
-	
+
 	def new
 	end
-	
+
 	def create
 		name = params[:upload][:file].original_filename
 		directory = "public/data"
