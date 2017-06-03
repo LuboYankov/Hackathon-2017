@@ -21,5 +21,6 @@ class FileUploadController < ApplicationController
 		json_data_to_srt(filename, get_json_data("public/converted_data/#{filename}.flac"))
 		File.delete("public/converted_data/#{filename}.flac") if File.exist?("public/converted_data/#{filename}.flac")
 		File.delete("public/data/#{filename}.mp4") if File.exist?("public/data/#{filename}.mp4")
+		redirect_to :controller => :download_srt, :action => 'download_subtitles', :filename_param => filename
 	end
 end
