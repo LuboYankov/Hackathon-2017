@@ -1,12 +1,22 @@
-<!DOCTYPE HTML>
-<HTML>
-	<p>WHOADUDETEXT</p>
-	<form accept-charset="UTF-8" method="post" enctype="multipart/form-data">
-		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">		
-			<p> Select file: <%= file_field_tag 'upload[file]', class: 'form-control', :required => true, accept: 'video/mp4' %> </p>
-			<%= submit_tag "Get subtitles", class: 'btn btn-default' %>
-	</form>
-	
-	</hr>
+<link href="/assets/file_upload.scss" media="screen" rel="stylesheet" />
 
-</HTML>
+<hgroup>
+  <h1>Generate Subtitles</h1>
+</hgroup>
+
+<form accept-charset="UTF-8" method="post" enctype="multipart/form-data">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		<div class="row">
+			<div class="col col-lg-4">
+				<%= image_tag("video.png", size: "175x175") %>
+			</div>
+			<div class="col col-lg-4">
+				<%= image_tag("rightArrow.png", size: "175x175") %>
+			</div>
+			<div class="col col-lg-4">
+				<%= image_tag("subtitle.png", size: "175x175") %>
+			</div>
+		</div>
+		<%= file_field_tag 'upload[file]', class: 'form-control', :required => true, accept: 'video/mp4' %>
+		<%= submit_tag "Get subtitles", class: 'button buttonBlue' %>
+</form>

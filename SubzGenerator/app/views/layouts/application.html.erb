@@ -30,6 +30,9 @@
               <div class="nav-wrapper">
               <a href="/" id="logo-container" class="brand-logo">SubzGenerator</a>
                   <ul class="right hide-on-med-and-down">
+                      <% if user_signed_in? %>
+                        <li><%= link_to('Generate subtitles', :controller => :file_upload, :method => :delete) %></li>
+                      <% end %>
                       <li><a href="#intro">About us</a></li>
                       <li><a href="#team">Contact</a></li>
                       <% if user_signed_in? %>
@@ -39,6 +42,9 @@
                       <% end %>
                   </ul>
                   <ul id="nav-mobile" class="side-nav">
+                    <% if user_signed_in? %>
+                      <li><%= link_to('Generate subtitles', :controller => :file_upload, :method => :delete) %></li>
+                    <% end %>
                     <li><a href="#intro">About us</a></li>
                     <li><a href="#team">Contact</a></li>
                     <% if user_signed_in? %>
