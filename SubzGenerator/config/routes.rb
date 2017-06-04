@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  root 'welcome#index'
+
   get '/file_upload/index', to: 'file_upload#index'
   post '/file_upload/index', to: 'file_upload#create'
   get 'download_srt/download_subtitles'

@@ -6,27 +6,54 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="/assets/style.css" media="screen" rel="stylesheet" />
+    <link href="/assets/materialize.css" media="screen" rel="stylesheet" />
+    <link href="/assets/materialize.min.css" media="screen" rel="stylesheet" />
+    <link href="/assets/font-awesome.min.css" media="screen" rel="stylesheet" />
+    <link href="/assets/custom-min.css" media="screen" rel="stylesheet" />
+    <link href="/assets/plugin-min.css" media="screen" rel="stylesheet" />
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <li>
-      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-      </li>
-    <% else %>
-      <li>
-      <%= link_to('Login', new_user_session_path)  %>
-      </li>
-    <% end %>
-    <% flash.each do |name, msg| %>
-      <% if msg.class == Array %>
-        <% msg.each do |message| %>
-          <%= content_tag :div, message, :id => "flash_#{name}" %>
-        <% end %>
-      <% else %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
-    <% end %>
+  <div id="loader-wrapper">
+      <div id="loader"></div>
+
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+
+  </div>
+
+  <!--Navigation-->
+   <div class="navbar-fixed">
+      <nav id="nav_f" class="default_color" role="navigation">
+          <div class="container">
+              <div class="nav-wrapper">
+              <a href="#" id="logo-container" class="brand-logo">SubzGenerator</a>
+                  <ul class="right hide-on-med-and-down">
+                      <li><a href="#intro">About us</a></li>
+                      <li><a href="#team">Contact</a></li>
+                      <% if user_signed_in? %>
+                        <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+                      <% else %>
+                        <li><%= link_to('Login', new_user_session_path) %></li>
+                      <% end %>
+                  </ul>
+                  <ul id="nav-mobile" class="side-nav">
+                    <li><a href="#intro">About us</a></li>
+                    <li><a href="#team">Contact</a></li>
+                    <% if user_signed_in? %>
+                      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+                    <% else %>
+                      <%= link_to('Login', new_user_session_path)  %>
+                    <% end %>
+                  </ul>
+              <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+              </div>
+          </div>
+      </nav>
+  </div>
     <%= yield %>
+    <% javascript 'plugin-min.js' %>
+    <% javascript 'custom-min.js' %>
   </body>
 </html>
