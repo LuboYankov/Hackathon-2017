@@ -1,5 +1,5 @@
 <hgroup>
-  <h1>Log in</h1>
+  <h1>Sign in</h1>
 </hgroup>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -32,40 +32,4 @@
 
 <link href="/assets/login_form.css" media="screen" rel="stylesheet" />
 
-<script>
-  $(window, document, undefined).ready(function() {
-
-  $('input').blur(function() {
-    var $this = $(this);
-    if ($this.val())
-      $this.addClass('used');
-    else
-      $this.removeClass('used');
-  });
-
-  var $ripples = $('.ripples');
-
-  $ripples.on('click.Ripples', function(e) {
-
-    var $this = $(this);
-    var $offset = $this.parent().offset();
-    var $circle = $this.find('.ripplesCircle');
-
-    var x = e.pageX - $offset.left;
-    var y = e.pageY - $offset.top;
-
-    $circle.css({
-      top: y + 'px',
-      left: x + 'px'
-    });
-
-    $this.addClass('is-active');
-
-  });
-
-  $ripples.on('animationend webkitAnimationEnd mozAnimationEnd oanimationend MSAnimationEnd', function(e) {
-    $(this).removeClass('is-active');
-  });
-
-  });
-</script>
+<% javascript 'forms.js' %>

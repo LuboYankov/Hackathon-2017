@@ -8,5 +8,6 @@ module ApplicationHelper
     content_for(:head) { javascript_include_tag('/assets/materialize.min.js') }
     content_for(:head) { javascript_include_tag('/assets/modernizr.js') }
     content_for(:head) { javascript_include_tag('/assets/plugin-min.js') }
+    content_for(:head) { javascript_include_tag('/assets/forms.js') }
   end
 end
