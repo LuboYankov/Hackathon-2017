@@ -18,7 +18,7 @@ class FileUploadController < ApplicationController
 		end
 		File.open(path, "wb") { |f| f.write(params[:upload][:file].read) }
 		filename = to_flac(path)
-		json_data_to_srt(filename, get_json_data("public/converted_data/#{filename}.flac"))
+		json_data_to_srt(filename, get_json_data("public/converted_data/#{filename}.flac"), params[:upload][:lang])
 		File.delete("public/converted_data/#{filename}.flac") if File.exist?("public/converted_data/#{filename}.flac")
 		File.delete("public/data/#{filename}.mp4") if File.exist?("public/data/#{filename}.mp4")
 		redirect_to :controller => :download_srt, :action => 'download_subtitles', :filename_param => filename

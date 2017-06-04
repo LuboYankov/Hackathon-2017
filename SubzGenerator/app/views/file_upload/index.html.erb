@@ -17,6 +17,9 @@
 				<%= image_tag("subtitle.png", size: "175x175") %>
 			</div>
 		</div>
+
+    <% @lang = ["Bulgarian", "Hungarian", "English", "Russian", "German"] %>
+    <%= select_tag 'upload[lang]', options_for_select([["Select language" , "" ]] + @lang.to_a.sort!), class: 'form-control', :required => true %>
 		<%= file_field_tag 'upload[file]', class: 'form-control', :required => true, accept: 'video/mp4' %>
 		<%= submit_tag "Get subtitles", class: 'button buttonBlue' %>
 </form>
