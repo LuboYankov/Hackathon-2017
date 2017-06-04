@@ -1,14 +1,17 @@
-<h2>Log in</h2>
+<hgroup>
+  <h1>Log in</h1>
+</hgroup>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="group">
+    <%= f.email_field :email, autofocus: true %><span class="highlight"></span><span class="bar"></span>
+    <label>Email</label>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
+  <div class="group">
     <%= f.password_field :password, autocomplete: "off" %>
+    <span class="highlight"></span><span class="bar"></span>
+    <label>Password</label>
   </div>
 
   <% if devise_mapping.rememberable? -%>
@@ -16,11 +19,53 @@
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
     </div>
-  <% end -%>
+  <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", {:style=>'margin-top: 20px;', :class => "button buttonBlue"} %>
+  </div>
+
+  <div id="links" style="text-align: center; padding-top: 15px;">
+    <%= render "users/shared/links" %>
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+<link href="/assets/login_form.css" media="screen" rel="stylesheet" />
+
+<script>
+  $(window, document, undefined).ready(function() {
+
+  $('input').blur(function() {
+    var $this = $(this);
+    if ($this.val())
+      $this.addClass('used');
+    else
+      $this.removeClass('used');
+  });
+
+  var $ripples = $('.ripples');
+
+  $ripples.on('click.Ripples', function(e) {
+
+    var $this = $(this);
+    var $offset = $this.parent().offset();
+    var $circle = $this.find('.ripplesCircle');
+
+    var x = e.pageX - $offset.left;
+    var y = e.pageY - $offset.top;
+
+    $circle.css({
+      top: y + 'px',
+      left: x + 'px'
+    });
+
+    $this.addClass('is-active');
+
+  });
+
+  $ripples.on('animationend webkitAnimationEnd mozAnimationEnd oanimationend MSAnimationEnd', function(e) {
+    $(this).removeClass('is-active');
+  });
+
+  });
+</script>
